@@ -9,22 +9,26 @@ import { GifMapper } from '../mapper/gif.mapper';
 export class GifsService {
   private http = inject(HttpClient);
   trendingGifs = signal<Gif[]>([]);
+  trendingGifsLoading = signal(true);
 
   constructor() {
     this.loadTrendingGifs();
+    console.log('Servicio creado');
   }
 
   loadTrendingGifs() {
     this.http
       .get<GiphyResponse>(`${environment.giphyUrl}/gifs/trending`, {
         params: {
-          api_key: environment.giphypiKeys,
+          api_key: environment.giphyApiKeys,
           limit: 20,
         },
       })
       .subscribe((resp) => {
         const gifs = GifMapper.mapGiphyItemsTGifArray(resp.data);
         this.trendingGifs.set(gifs);
+        this.trendingGifsLoading.set(false);
+        console.log({gifs});
       });
   }
 }
