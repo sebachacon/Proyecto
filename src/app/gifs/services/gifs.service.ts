@@ -52,12 +52,12 @@ return this.http
         map((items) => GifMapper.mapGiphyItemsTGifArray(items)),
 
         // todo historial
-        tap(items => {
-          this.searchHistory.update(history => ({
+        tap((items) => {
+          this.searchHistory.update((history) => ({
             ...history,
             [query.toLowerCase()]: items,
-          }))
-        })
+          }));
+        }),
       );
 
       //.subscribe((resp) => {
