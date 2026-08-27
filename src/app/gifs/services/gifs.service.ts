@@ -37,7 +37,6 @@ searchHistoryKeys = computed(() => Object.keys(this.searchHistory()));
 
   constructor() {
     this.loadTrendingGifs();
-    console.log('Servicio creado');
   }
 
   saveGifsToLocalStorage = effect(() => {
@@ -57,7 +56,6 @@ searchHistoryKeys = computed(() => Object.keys(this.searchHistory()));
         const gifs = GifMapper.mapGiphyItemsTGifArray(resp.data);
         this.trendingGifs.set(gifs);
         this.trendingGifsLoading.set(false);
-        console.log({gifs});
       });
   }
 
