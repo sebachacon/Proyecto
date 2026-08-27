@@ -24,6 +24,7 @@ export default class TrendingPage {
 
     if (isAtBottom) {
       // TODO: cargar la siguiente página de gifs
+      this.gifService.loadTrendingGifs();
     }
   }
 
